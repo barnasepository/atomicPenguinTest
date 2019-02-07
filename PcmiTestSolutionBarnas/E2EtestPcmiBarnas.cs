@@ -24,6 +24,7 @@ namespace PcmiTestSolutionBarnas
         public void E2ETestBarnas()
         {
             GoToLoginPage().
+            VerifyLoginPageIsOpened().
             TryLoginWithoutPassword(IncorrectUser).
             VerifyPassworIsdRequiredAllert().
             LoginWithCorrectCredentials(CorrectUser).

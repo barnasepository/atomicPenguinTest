@@ -61,8 +61,7 @@ namespace PcmiTestSolutionBarnas.Pages
             LenderNumber = lenderNumberValue;
             Year = yearValue;
             Make = makeValue;
-            Model = modelValue;
-    }
+            Model = modelValue;    }
 
         public AddContractPage GoToNewlyOpenedTab()
         {
@@ -72,8 +71,7 @@ namespace PcmiTestSolutionBarnas.Pages
             WebDriverHelper.Driver.SwitchTo().Window(lastTab);
             string title = WebDriverHelper.Driver.Title;
             Assert.AreEqual(expectedTitle, title);
-            return this;
-        }
+            return this;        }
 
         public AddContractPage VerifyAddContractPageIsOpened()
         {
