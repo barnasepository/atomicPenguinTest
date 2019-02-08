@@ -1,13 +1,7 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PcmiTestSolutionBarnas.Pages;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -40,8 +34,7 @@ namespace PcmiTestSolutionBarnas.Helpers
             String lastTab = windowHandles[windowHandles.Count - 1];
             Driver.SwitchTo().Window(lastTab);
             string title = Driver.Title;
-            Assert.AreEqual(expectedTitle, title);
-            
+            Assert.AreEqual(expectedTitle, title);            
         }
 
         public static LoginPage GoToLoginPage()

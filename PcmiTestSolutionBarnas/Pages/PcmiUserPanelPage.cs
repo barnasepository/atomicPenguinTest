@@ -23,7 +23,6 @@ namespace PcmiTestSolutionBarnas.Pages
 
         public PcmiUserPanelPage VerifyPcmiUserPanelPageIsOpened()
         {
-            Thread.Sleep(5000);
             string title = Driver.Title;
             Assert.AreEqual(expectedTitle, title);
             return this;
@@ -31,18 +30,17 @@ namespace PcmiTestSolutionBarnas.Pages
 
         public AddContractPage ClickOnAddContractLink()
         {
-            WaitHelper.waitForElement(By.XPath(addContractLink), 10);
+            WaitHelper.WaitForElement(By.XPath(addContractLink), 10);
             Driver.FindElement(By.XPath(addContractLink)).Click();       
             return new AddContractPage();
         }
 
         public LoginPage LogoutFromPcmiUserPanelPage()
         {
-            WaitHelper.waitForElement(By.XPath(element), 5);
+            WaitHelper.WaitForElement(By.XPath(element), 5);
             action.MoveToElement(Driver.FindElement(By.XPath(element))).Perform();
-            WaitHelper.waitForElement(By.XPath(logoutButton), 5);
+            WaitHelper.WaitForElement(By.XPath(logoutButton), 5);
             Driver.FindElement(By.XPath(logoutButton)).Click();
-
             return new LoginPage();
         }
     }

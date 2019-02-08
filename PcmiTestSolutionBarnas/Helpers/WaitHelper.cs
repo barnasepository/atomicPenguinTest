@@ -6,7 +6,7 @@ namespace PcmiTestSolutionBarnas.Helpers
 {
     public class WaitHelper
     {
-        public static void waitForElement(By byLocator, int timeInSeconds)
+        public static void WaitForElement(By byLocator, int timeInSeconds)
         {
             var wait = new WebDriverWait(WebDriverHelper.Driver, TimeSpan.FromSeconds(timeInSeconds));
             wait.Until(Driver => Driver.FindElement(byLocator));

@@ -10,9 +10,9 @@ namespace PcmiTestSolutionBarnas.Pages
         public string Password { get; set; }
         public IWebDriver Driver { get; set; }
 
-        private readonly string alertMessageLocator = "//label[contains(@id, 'dialogText')] [contains(text(),'Password is required.')]";
-        private readonly string loginButton = "//*[@id='ucTopBar_ASPxRoundPanel2_ucLogin_cbLogin_pnl_btnLoginNew_CD']/span";
-        private readonly string closeButton = "//span[contains(@class,'ui-button-text')] [contains(text(),'OK')]";
+        private readonly string alertMessageXpath = "//label[contains(@id, 'dialogText')] [contains(text(),'Password is required.')]";
+        private readonly string loginButtonXpath = "//*[@id='ucTopBar_ASPxRoundPanel2_ucLogin_cbLogin_pnl_btnLoginNew_CD']/span";
+        private readonly string closeButtonXpath = "//span[contains(@class,'ui-button-text')] [contains(text(),'OK')]";
         private readonly string userLocator = "ucTopBar_ASPxRoundPanel2_ucLogin_cbLogin_pnl_txtLoginNew_I";
         private readonly string passwordLocator = "ucTopBar_ASPxRoundPanel2_ucLogin_cbLogin_pnl_txtPasswordNew_I";
         private readonly string expectedAllertMessage = "Password is required.";
@@ -38,7 +38,7 @@ namespace PcmiTestSolutionBarnas.Pages
 
         public LoginPage VerifyLoginPageIsOpened()
         {
-            WaitHelper.waitForElement(By.XPath(newLoginDivXpath), 5);
+            WaitHelper.WaitForElement(By.XPath(newLoginDivXpath), 5);
             Driver.FindElement(By.XPath(newLoginDivXpath));
             return this;
         }
@@ -47,7 +47,7 @@ namespace PcmiTestSolutionBarnas.Pages
             CleanCredentialsFields();
             Driver.FindElement(By.Id(userLocator)).SendKeys(User.Username);
             Driver.FindElement(By.Id(passwordLocator)).SendKeys(User.Password);
-            Driver.FindElement(By.XPath(loginButton)).Click();
+            Driver.FindElement(By.XPath(loginButtonXpath)).Click();
             return new PcmiUserPanelPage();
         }
 
@@ -56,16 +56,16 @@ namespace PcmiTestSolutionBarnas.Pages
             CleanCredentialsFields();
             Driver.FindElement(By.Id(userLocator)).SendKeys(user.Username);
             Driver.FindElement(By.Id(passwordLocator)).SendKeys(user.Password);            
-            Driver.FindElement(By.XPath(loginButton)).Click();
+            Driver.FindElement(By.XPath(loginButtonXpath)).Click();
             return this;
         }
 
-        public LoginPage VerifyPassworIsdRequiredAllert()
+        public LoginPage VerifyPasswordIsRequiredAllert()
         {
-            WaitHelper.waitForElement(By.XPath(alertMessageLocator), 10);
-            string allertMessage = Driver.FindElement(By.XPath(alertMessageLocator)).Text;
+            WaitHelper.WaitForElement(By.XPath(alertMessageXpath), 10);
+            string allertMessage = Driver.FindElement(By.XPath(alertMessageXpath)).Text;
             Assert.AreEqual(expectedAllertMessage, allertMessage);
-            Driver.FindElement(By.XPath(closeButton)).Click();
+            Driver.FindElement(By.XPath(closeButtonXpath)).Click();
             return this;
         }
     }

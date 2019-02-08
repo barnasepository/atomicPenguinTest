@@ -7,14 +7,10 @@ namespace PcmiTestSolutionBarnas
     [TestClass]
     public class E2EtestPcmiBarnas : WebDriverHelper
     {
-        //private string userName = "tester@pcmi.com";
-        //private string correctUserPassword = "qQadfi4$2";
-        //private readonly string incorrectUserPassword = "";
-
+        private readonly AddContractPage ContractSetup = new AddContractPage("100", "3N4BB41D7W2794739", "Loan", "10,000.00", "26", "LN00000012", "1998", "NISSAN", "Sentra SE");
         private readonly LoginPage CorrectUser = new LoginPage("tester@pcmi.com", "qQadfi4$2");
         private readonly LoginPage IncorrectUser = new LoginPage("tester@pcmi.com", "");
-
-
+        
         [TestInitialize]
         public void SetupTest()
         {
@@ -26,14 +22,14 @@ namespace PcmiTestSolutionBarnas
             GoToLoginPage().
             VerifyLoginPageIsOpened().
             TryLoginWithoutPassword(IncorrectUser).
-            VerifyPassworIsdRequiredAllert().
+            VerifyPasswordIsRequiredAllert().
             LoginWithCorrectCredentials(CorrectUser).
             VerifyPcmiUserPanelPageIsOpened().
             ClickOnAddContractLink().
             GoToNewlyOpenedTab().
             VerifyAddContractPageIsOpened().
-            FillAndVerifyDealSetupFormFields().
-            VerifyFieldsAutodecode().
+            FillAndVerifyDealSetupFormFields(ContractSetup).
+            VerifyFieldsAutodecode(ContractSetup).
             VerifyDolarSignInAmountFields().
             CloseAddContractTab().
             VerifyPcmiUserPanelPageIsOpened().
